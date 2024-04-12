@@ -30,4 +30,7 @@ jobs:
         password: ${{secrets.DOCKERHUB_TOKEN}}
 
     - name: Push Image
-      run: docker push brunovivaldodev/pass-in-api:${{steps.generate_sha.outputs.sha}}   
+      run: |
+        docker push brunovivaldodev/pass-in-api:${{steps.generate_sha.outputs.sha}}
+        docker tag brunovivaldodev/pass-in-api:${{steps.generate_sha.outputs.sha}} docker push brunovivaldodev/pass-in-api:latest
+        docker push brunovivaldodev/pass-in-api:latest    
